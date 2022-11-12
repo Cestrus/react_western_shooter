@@ -1,0 +1,15 @@
+.top-left {
+}
+
+.top-right {
+  transform: rotateY(180deg);
+}
+
+.bottom-left {
+  transform: rotateX(180deg);
+}
+
+.bottom-right {
+  transform: rotateX(180deg);
+  transform: rotateZ(180deg);
+}
