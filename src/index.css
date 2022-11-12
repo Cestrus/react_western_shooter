@@ -1,0 +1,71 @@
+@import url('./libs/normalize.css');
+
+@font-face {
+  font-family: Gildia-bold;
+  src: url('./fonts/a-gildia-bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: Gildia-exp-bold;
+  src: url('./fonts/a-gildiaexp-bold.woff2') format('woff2');
+}
+@font-face {
+  font-family: Gildia-rough-bold;
+  src: url('./fonts/a-gildiarough-bold.woff2') format('woff2');
+}
+
+body {
+  --color-black: #000;
+  --color-white: #fff;
+}
+
+@media screen and (width < 768px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media screen and (width >= 768px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (width >= 992px) {
+  html {
+    font-size: 16px;
+  }
+}
+@media screen and (width >= 1400px) {
+  html {
+    font-size: 20px;
+  }
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+h2 {
+  font-size: 3.1rem;
+}
+
+h3 {
+  font-size: 2.4rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
