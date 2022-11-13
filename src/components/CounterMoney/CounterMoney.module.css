@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+
+.text {
+  font-family: Gildia-rough-bold, sans-serif;
+}

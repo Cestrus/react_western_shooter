@@ -10,7 +10,7 @@ const CounterMoney: React.FC<ICountMoneyProps> = () => {
 
   return (
     <div className={styles.counter}>
-      <h3 className={styles.text}>${moneyValue}</h3>
+      <h2 className={styles.text}>${moneyValue}</h2>
     </div>
   );
 };
