@@ -1,8 +1,13 @@
 import React from 'react';
-import './App.css';
+import GamePlate from './layout/GamePlate/GamePlate';
+import Layout from './layout/Layout';
 
 function App(): JSX.Element {
-  return <div className='App'></div>;
+  return (
+    <Layout>
+      <GamePlate />
+    </Layout>
+  );
 }
 
 export default App;
