@@ -6,7 +6,7 @@ import styles from './TitleMain.module.css';
 import gunSvg from '../../assets/gun.svg';
 import { ITitleMainProps } from './TitleMain.prop';
 
-const TitleMain: React.FC<ITitleMainProps> = ({ children }) => {
+export const TitleMain: React.FC<ITitleMainProps> = ({ children }) => {
   return (
     <div className={styles.container}>
       <ReactSVG src={gunSvg} className={cn(styles.img, styles.imgLeft)} />
@@ -15,5 +15,3 @@ const TitleMain: React.FC<ITitleMainProps> = ({ children }) => {
     </div>
   );
 };
-
-export default TitleMain;

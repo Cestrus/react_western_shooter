@@ -6,7 +6,7 @@ import styles from './CornerMain.module.css';
 import { ICornerMainProps } from './CornerMain.prop';
 import CornerMainSvg from './vintage_corner.svg';
 
-const CornerMain: React.FC<ICornerMainProps> = ({ position, className }) => {
+export const CornerMain: React.FC<ICornerMainProps> = ({ position, className }) => {
   return (
     <ReactSVG
       src={CornerMainSvg}
@@ -19,5 +19,3 @@ const CornerMain: React.FC<ICornerMainProps> = ({ position, className }) => {
     />
   );
 };
-
-export default CornerMain;

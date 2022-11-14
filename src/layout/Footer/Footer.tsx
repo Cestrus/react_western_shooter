@@ -1,6 +1,6 @@
 import React from 'react';
-import CornerMain from '../../components/CornerMain/CornerMain';
-import CounterMoney from '../../components/CounterMoney/CounterMoney';
+import { CornerMain } from '../../components/index';
+import { CounterMoney } from '../../components/index';
 
 import styles from './Footer.module.css';
 

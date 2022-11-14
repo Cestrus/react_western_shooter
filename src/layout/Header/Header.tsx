@@ -1,6 +1,6 @@
 import React from 'react';
-import CornerMain from '../../components/CornerMain/CornerMain';
-import TitleMain from '../../components/TitleMain/TitleMain';
+import { CornerMain } from '../../components/index';
+import { TitleMain } from '../../components/index';
 
 import styles from './Header.module.css';
 

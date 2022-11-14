@@ -6,7 +6,7 @@ import cn from 'classnames';
 import styles from './CounterMoney.module.css';
 import { ICountMoneyProps } from './CounterMoney.prop';
 
-const CounterMoney: React.FC<ICountMoneyProps> = ({ className }) => {
+export const CounterMoney: React.FC<ICountMoneyProps> = ({ className }) => {
   const moneyValue = useSelector((state: RootState) => state.money.moneyValue);
 
   return (
@@ -15,5 +15,3 @@ const CounterMoney: React.FC<ICountMoneyProps> = ({ className }) => {
     </div>
   );
 };
-
-export default CounterMoney;
