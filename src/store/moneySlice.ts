@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export interface MoneyState {
+export interface IMoneyState {
   moneyValue: number;
 }
 
-const initialState: MoneyState = {
+const initialState: IMoneyState = {
   moneyValue: 0,
 };
 

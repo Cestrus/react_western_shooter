@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
+import bulletsReducer from './bulletsSlice';
 import moneyReducer from './moneySlice';
+import playerSlice from './playerSlice';
 
 export const store = configureStore({
   reducer: {
     money: moneyReducer,
+    bullets: bulletsReducer,
+    player: playerSlice,
   },
 });
 
