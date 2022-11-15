@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+  height: 40%;
+}
+
+.gun {
+  display: flex;
+}
