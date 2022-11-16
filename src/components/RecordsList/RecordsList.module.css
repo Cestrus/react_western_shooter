@@ -1,0 +1,12 @@
+.list {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  height: calc(100% - 4rem);
+  margin: 10px;
+  padding-inline-start: 0;
+
+  font-family: Gildia-rough-bold, serif;
+  list-style-type: none;
+}
