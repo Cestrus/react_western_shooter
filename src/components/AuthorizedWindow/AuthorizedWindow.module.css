@@ -1,0 +1,102 @@
+.container {
+  position: absolute;
+  top: calc(50vh - 150px);
+  left: calc(50vw - 250px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 500px;
+  height: 300px;
+
+  font-family: Gildia-rough-bold, sans-serif;
+
+  background-image: url('../../assets/wild-west.jpg');
+  background-size: 100% 100%;
+  border: 2px solid black;
+  box-shadow: 0 0 20px var(--color-prime-100);
+}
+
+.titleWrap {
+  display: flex;
+  height: 30%;
+}
+
+.title {
+  margin: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+
+  width: 50%;
+  height: 70%;
+}
+
+.label {
+  margin: 10px;
+  font-size: 26px;
+  text-align: center;
+}
+
+.input {
+  display: block;
+
+  width: 70%;
+  height: 30px;
+  padding-left: 10px;
+
+  font-family: Gildia-exp-bold, sans-serif;
+  font-size: 18px;
+}
+
+.button {
+  width: 100px;
+  height: 35px;
+  margin: 30px 20px;
+  font-size: 18px;
+}
+
+.corner {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+}
+
+.error {
+  border-color: red;
+  border-radius: 2px;
+}
+
+.shot {
+  position: absolute;
+
+  width: 40px;
+  height: 40px;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.shot_1 {
+  top: 25%;
+  left: 15%;
+  background-image: url('../../assets/holes/bullet-hole-1.png');
+}
+
+.shot_2 {
+  top: 70%;
+  left: 20%;
+  background-image: url('../../assets/holes/bullet-hole-2.png');
+}
+
+.shot_3 {
+  top: 40%;
+  left: 80%;
+  background-image: url('../../assets/holes/bullet-hole-3.png');
+}
