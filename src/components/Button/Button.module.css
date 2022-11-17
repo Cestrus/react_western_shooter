@@ -2,11 +2,10 @@
   position: relative;
 
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   box-sizing: border-box;
-  width: 80px;
-  height: 40px;
-  margin: auto;
 
   font-family: Gildia-rough-bold, sans-serif;
 
@@ -18,6 +17,7 @@
   position: absolute;
   width: 1.5em;
   height: 0.8em;
+  margin: -0.25rem 0;
 }
 
 .up {
