@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+
+  display: flex;
+
+  box-sizing: border-box;
+  width: 80px;
+  height: 40px;
+  margin: auto;
+
+  font-family: Gildia-rough-bold, sans-serif;
+
+  background: radial-gradient(#e9c6a9, #7b3709);
+  border: 2px solid black;
+}
+
+.corner {
+  position: absolute;
+  width: 1.5em;
+  height: 0.8em;
+}
+
+.up {
+  opacity: 1;
+}
+
+.down {
+  opacity: 0.7;
+}
