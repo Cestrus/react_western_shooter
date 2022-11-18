@@ -22,6 +22,6 @@
 
 /* Handle */
 .list::-webkit-scrollbar-thumb {
-  background: #7d492d;
+  background: var(--color-prime-500);
   border-radius: 2px;
 }
