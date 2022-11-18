@@ -1,7 +1,5 @@
 .container {
   position: absolute;
-  top: calc(50vh - 150px);
-  left: calc(50vw - 250px);
 
   display: flex;
   flex-direction: column;
@@ -16,7 +14,7 @@
   background-image: url('../../assets/wild-west.jpg');
   background-size: 100% 100%;
   border: 2px solid black;
-  box-shadow: 0 0 20px var(--color-prime-100);
+  box-shadow: 0 0 20px black;
 }
 
 .titleWrap {
