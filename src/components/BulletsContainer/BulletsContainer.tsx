@@ -6,11 +6,11 @@ import styles from './BulletsContainer.module.css';
 import { IBulletsContainerProps } from './BulletsContainer.prop';
 import { BULLETS_IN_GUN } from '../../utils/constants';
 import { setGameIsOver } from '../../store/playerSlice';
-import { reloadGun } from '../../store/bulletsSlice';
+import { reloadGun } from '../../store/shootingSlice';
 
 export const BulletsContainer: React.FC<IBulletsContainerProps> = () => {
-  const isGunEmpty = useSelector((state: RootState) => state.bullets.isGunEmpty);
-  const bulletsValue = useSelector((state: RootState) => state.bullets.bulletsValue);
+  const isGunEmpty = useSelector((state: RootState) => state.shooting.isGunEmpty);
+  const bulletsValue = useSelector((state: RootState) => state.shooting.bulletsValue);
   const dispatch = useDispatch();
 
   const tanksBulletsArr = new Array(bulletsValue / BULLETS_IN_GUN).fill(<></>);
