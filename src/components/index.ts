@@ -6,3 +6,4 @@ export * from './GunContainer/GunContainer';
 export * from './AuthorizedWindow/AuthorizedWindow';
 export * from './Button/Button';
 export * from './InfoPanel/InfoPanel';
+export * from './ShooterPanel/ShooterPanel';
