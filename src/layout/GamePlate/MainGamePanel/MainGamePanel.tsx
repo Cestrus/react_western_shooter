@@ -8,6 +8,7 @@ import { IMainGamePlateProps } from './MainGamePanel.prop';
 import { RootState } from '../../../store/store';
 import { ShootingType, setShotCoord, missTarget } from '../../../store/shootingSlice';
 import { SHOT_WINDOW_HEIGHT, SHOT_WINDOW_WIDTH } from '../../../utils/constants';
+import { targets } from '../../../utils/targets';
 
 const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
   const shootResult = useSelector((state: RootState) => state.shooting.shootResult);
@@ -28,21 +29,9 @@ const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
 
   return (
     <div className={styles.container} onClick={shotHandler}>
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
-      <ShooterPanel />
+      {targets.map((target) => (
+        <ShooterPanel target={target} key={target.name} />
+      ))}
       {shootResult === ShootingType.HIT && (
         <div className={cn(styles.shot, styles.hit)} style={{ top: coord?.top, left: coord?.left }}></div>
       )}
