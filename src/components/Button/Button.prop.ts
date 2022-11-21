@@ -2,5 +2,5 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, MouseEventHandler, ReactNode }
 
 export interface IButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children?: ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
