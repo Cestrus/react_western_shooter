@@ -8,7 +8,7 @@ export interface IPlayerState {
 
 const initialState: IPlayerState = {
   gameIsOver: false,
-  name: 'John Doo',
+  name: '',
   isAuthorized: false,
 };
 
