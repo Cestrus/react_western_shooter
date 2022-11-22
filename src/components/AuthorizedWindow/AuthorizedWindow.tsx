@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import styles from './AuthorizedWindow.module.css';
 import { CornerMain } from '../CornerMain/CornerMain';
@@ -29,11 +30,21 @@ export const AuthorizedWindow: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      className={styles.container}
+      initial={{ x: '70vw' }}
+      animate={{ x: 0 }}
+      exit={{ x: '70vw' }}
+      transition={{
+        delay: 0.5,
+        duration: 0.6,
+        type: 'spring',
+      }}
+    >
       <div className={styles.titleWrap}>
         <h2 className={styles.title}>WESTERN SHOT</h2>
       </div>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={submitHandler}>
         <label className={styles.label}>ENTER YOUR NAME</label>
         <input
           type='text'
@@ -44,17 +55,32 @@ export const AuthorizedWindow: React.FC = () => {
             [styles.error]: isEmptyName,
           })}
         />
-        <Button type='submit' onClick={submitHandler} className={styles.button}>
+        <Button type='submit' className={styles.button}>
           SUBMIT
         </Button>
       </form>
-      <div className={cn(styles.shot, styles.shot_1)}></div>
-      <div className={cn(styles.shot, styles.shot_2)}></div>
-      <div className={cn(styles.shot, styles.shot_3)}></div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.3, duration: 0.1 }}
+        className={cn(styles.shot, styles.shot_1)}
+      ></motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.1 }}
+        className={cn(styles.shot, styles.shot_2)}
+      ></motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.9, duration: 0.1 }}
+        className={cn(styles.shot, styles.shot_3)}
+      ></motion.div>
       <CornerMain position='top-left' className={styles.corner} />
       <CornerMain position='top-right' className={styles.corner} />
       <CornerMain position='bottom-left' className={styles.corner} />
       <CornerMain position='bottom-right' className={styles.corner} />
-    </div>
+    </motion.div>
   );
 };

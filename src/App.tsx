@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -13,7 +14,7 @@ function App(): JSX.Element {
 
   return (
     <Layout>
-      {!isAuthorized && <Modal modalType={ModalType.AUTHORIZATION} />}
+      <AnimatePresence>{!isAuthorized && <Modal modalType={ModalType.AUTHORIZATION} />}</AnimatePresence>
       {isGameOver && <Modal modalType={ModalType.GAMEOVER} />}
       <GamePlate />
     </Layout>
