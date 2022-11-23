@@ -15,7 +15,9 @@ export const Button: React.FC<IButtonProps> = ({ onClick, children, className })
 
   const mouseUpHandler: React.MouseEventHandler<HTMLButtonElement> = (ev) => {
     setIsClick(false);
-    onClick(ev);
+    if (onClick) {
+      onClick(ev);
+    }
   };
 
   return (

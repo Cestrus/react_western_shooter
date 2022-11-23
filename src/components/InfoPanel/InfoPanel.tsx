@@ -15,7 +15,10 @@ export const InfoPanel: React.FC<IInfoPanelProps> = () => {
       <div className={styles.userNameWrap}>
         <h3 className={styles.userName}>{userName}</h3>
       </div>
-      <RecordsList playersList={players} />
+      <div className={styles.titleWrap}>
+        <h4 className={styles.title}>TOP GUNNERS:</h4>
+      </div>
+      {userName && <RecordsList playersList={players} />}
     </div>
   );
 };
