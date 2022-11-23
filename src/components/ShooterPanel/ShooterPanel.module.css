@@ -78,3 +78,13 @@
 .hidden {
   display: none;
 }
+
+.guns {
+  width: 80%;
+  height: 80%;
+
+  background-image: url('./guns.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+}
