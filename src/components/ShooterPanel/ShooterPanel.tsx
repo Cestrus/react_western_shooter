@@ -6,7 +6,7 @@ import { IShooterPanelProps } from './ShooterPanel.prop';
 import styles from './ShooterPanel.module.css';
 import { hitTarget, setShotCoord } from '../../store/shootingSlice';
 import { addMoneyValue } from '../../store/moneySlice';
-import { SHOT_WINDOW_WIDTH, SHOT_WINDOW_HEIGHT } from '../../utils/constants';
+import { SHOT_WIDTH, SHOT_HEIGHT } from '../../utils/constants';
 
 export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
   const dispatch = useDispatch();
@@ -14,8 +14,8 @@ export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
   const shootHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
     ev.stopPropagation();
 
-    const coordX = ev.clientX - SHOT_WINDOW_WIDTH / 2;
-    const coordY = ev.clientY - SHOT_WINDOW_HEIGHT / 2;
+    const coordX = ev.clientX - SHOT_WIDTH / 2;
+    const coordY = ev.clientY - SHOT_HEIGHT / 2;
 
     dispatch(setShotCoord({ top: coordY, left: coordX }));
     dispatch(hitTarget());
@@ -45,8 +45,3 @@ export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
     </div>
   );
 };
-
-//    bloodZoneTop: 1.2,
-// bloodZoneLeft: 1.1,
-// bloodZoneWidht: 2.2,
-// bloodZoneHeight: 3,
