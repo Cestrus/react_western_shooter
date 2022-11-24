@@ -7,7 +7,7 @@ import styles from './MainGamePanel.module.css';
 import { IMainGamePlateProps } from './MainGamePanel.prop';
 import { RootState } from '../../../store/store';
 import { ShootingType, setShotCoord, missTarget } from '../../../store/shootingSlice';
-import { SHOT_WINDOW_HEIGHT, SHOT_WINDOW_WIDTH } from '../../../utils/constants';
+import { SHOT_HEIGHT, SHOT_WIDTH } from '../../../utils/constants';
 import { targets } from '../../../utils/targets';
 
 const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
@@ -16,8 +16,8 @@ const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
   const dispatch = useDispatch();
 
   const shotHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
-    const coordX = ev.clientX - SHOT_WINDOW_WIDTH / 2;
-    const coordY = ev.clientY - SHOT_WINDOW_HEIGHT / 2;
+    const coordX = ev.clientX - SHOT_WIDTH / 2;
+    const coordY = ev.clientY - SHOT_HEIGHT / 2;
 
     dispatch(setShotCoord({ top: coordY, left: coordX }));
     dispatch(missTarget());

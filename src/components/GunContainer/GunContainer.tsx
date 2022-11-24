@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ReactSVG } from 'react-svg';
+import cn from 'classnames';
 
 import styles from './GunContainer.module.css';
 import { RootState } from '../../store/store';
@@ -11,7 +11,7 @@ export const GunContainer: React.FC<IGunContainerProps> = () => {
 
   return (
     <div className={styles.container}>
-      <ReactSVG src={`./images/bullet_in_gun/gun_${bullets}.svg`} className={styles.gun} />
+      <div className={cn(styles.gun, styles[`bullet_${bullets}`])}></div>
     </div>
   );
 };
