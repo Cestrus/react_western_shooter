@@ -19,8 +19,6 @@ export const GunContainer: React.FC<IGunContainerProps> = () => {
     const reloadGun = (): void => {
       if (bulletsInGun < BULLETS_IN_GUN) {
         setTimeout(() => {
-          console.log('reload', bulletsInGun);
-
           dispatch(addBulletInGun());
         }, 300);
       }
