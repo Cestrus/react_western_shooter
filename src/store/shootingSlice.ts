@@ -16,7 +16,7 @@ export type ShotCoordType = {
 export interface IShootingState {
   bulletsValue: number;
   bulletsInGun: number;
-  isGunEmpty: boolean;
+  isReloading: boolean;
   shootResult: ShootingType;
   shotCoord: ShotCoordType | null;
 }
@@ -24,7 +24,7 @@ export interface IShootingState {
 const initialState: IShootingState = {
   bulletsValue: BULLETS_VALUE - BULLETS_IN_GUN,
   bulletsInGun: BULLETS_IN_GUN,
-  isGunEmpty: false,
+  isReloading: false,
   shootResult: ShootingType.SILENCE,
   shotCoord: null,
 };
@@ -33,21 +33,23 @@ export const shootingSlice = createSlice({
   name: 'shooting',
   initialState,
   reducers: {
-    setIsGunEmpty: (state) => {
-      state.isGunEmpty = !state.isGunEmpty;
-    },
-    reloadGun: (state) => {
-      // Todo reloading throw timer
-      const bullets = state.bulletsValue - BULLETS_IN_GUN;
-      state.bulletsValue = bullets > 0 ? bullets : 0;
-    },
     addBulletInGun: (state) => {
-      const bullets = ++state.bulletsInGun;
-      state.bulletsInGun = bullets <= BULLETS_IN_GUN ? bullets : BULLETS_IN_GUN;
+      if (state.isReloading) {
+        const bullets = state.bulletsInGun + 1;
+        state.bulletsInGun = bullets <= BULLETS_IN_GUN ? bullets : BULLETS_IN_GUN;
+        if (bullets === BULLETS_IN_GUN) state.isReloading = false;
+      }
     },
     removeBulletFromGun: (state) => {
-      const bullets = --state.bulletsInGun;
+      const bullets = state.bulletsInGun - 1;
       state.bulletsInGun = bullets > 0 ? bullets : 0;
+    },
+    removeBulletsValue: (state) => {
+      const bulletsValue = state.bulletsValue - BULLETS_IN_GUN;
+      state.bulletsValue = bulletsValue >= 0 ? bulletsValue : 0;
+      if (bulletsValue >= 0) {
+        state.isReloading = true;
+      }
     },
     hitTarget: (state) => {
       state.shootResult = ShootingType.HIT;
@@ -55,7 +57,7 @@ export const shootingSlice = createSlice({
     missTarget: (state) => {
       state.shootResult = ShootingType.MISSING;
     },
-    silence: (state) => {
+    setSilence: (state) => {
       state.shootResult = ShootingType.SILENCE;
     },
     setShotCoord: (state, action: PayloadAction<ShotCoordType>) => {
@@ -68,7 +70,14 @@ export const shootingSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setIsGunEmpty, reloadGun, addBulletInGun, removeBulletFromGun, hitTarget, missTarget, setShotCoord } =
-  shootingSlice.actions;
+export const {
+  // setIsGunEmpty,
+  addBulletInGun,
+  removeBulletFromGun,
+  hitTarget,
+  missTarget,
+  setShotCoord,
+  removeBulletsValue,
+} = shootingSlice.actions;
 
 export default shootingSlice.reducer;

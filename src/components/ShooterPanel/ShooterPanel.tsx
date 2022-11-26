@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 
 import { IShooterPanelProps } from './ShooterPanel.prop';
@@ -7,19 +7,23 @@ import styles from './ShooterPanel.module.css';
 import { hitTarget, setShotCoord } from '../../store/shootingSlice';
 import { addMoneyValue } from '../../store/moneySlice';
 import { SHOT_WIDTH, SHOT_HEIGHT } from '../../utils/constants';
+import { RootState } from '../../store/store';
 
 export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
+  const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
   const dispatch = useDispatch();
 
   const shootHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
     ev.stopPropagation();
 
-    const coordX = ev.clientX - SHOT_WIDTH / 2;
-    const coordY = ev.clientY - SHOT_HEIGHT / 2;
+    if (!isReloading) {
+      const coordX = ev.clientX - SHOT_WIDTH / 2;
+      const coordY = ev.clientY - SHOT_HEIGHT / 2;
 
-    dispatch(setShotCoord({ top: coordY, left: coordX }));
-    dispatch(hitTarget());
-    dispatch(addMoneyValue(target.price));
+      dispatch(setShotCoord({ top: coordY, left: coordX }));
+      dispatch(hitTarget());
+      dispatch(addMoneyValue(target.price));
+    }
   };
 
   return (

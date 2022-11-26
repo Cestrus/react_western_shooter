@@ -6,21 +6,25 @@ import cn from 'classnames';
 import styles from './MainGamePanel.module.css';
 import { IMainGamePlateProps } from './MainGamePanel.prop';
 import { RootState } from '../../../store/store';
-import { ShootingType, setShotCoord, missTarget } from '../../../store/shootingSlice';
+import { ShootingType, setShotCoord, missTarget, removeBulletFromGun } from '../../../store/shootingSlice';
 import { SHOT_HEIGHT, SHOT_WIDTH } from '../../../utils/constants';
 import { targets } from '../../../utils/targets';
 
 const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
   const shootResult = useSelector((state: RootState) => state.shooting.shootResult);
+  const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
   const coord = useSelector((state: RootState) => state.shooting.shotCoord);
   const dispatch = useDispatch();
 
   const shotHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
-    const coordX = ev.clientX - SHOT_WIDTH / 2;
-    const coordY = ev.clientY - SHOT_HEIGHT / 2;
+    if (!isReloading) {
+      const coordX = ev.clientX - SHOT_WIDTH / 2;
+      const coordY = ev.clientY - SHOT_HEIGHT / 2;
 
-    dispatch(setShotCoord({ top: coordY, left: coordX }));
-    dispatch(missTarget());
+      dispatch(setShotCoord({ top: coordY, left: coordX }));
+      dispatch(missTarget());
+      dispatch(removeBulletFromGun());
+    }
   };
 
   const rand = (): number => {

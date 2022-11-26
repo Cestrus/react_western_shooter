@@ -1,26 +1,24 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../store/store';
 import styles from './BulletsContainer.module.css';
 import { IBulletsContainerProps } from './BulletsContainer.prop';
 import { BULLETS_IN_GUN } from '../../utils/constants';
-import { setGameIsOver } from '../../store/playerSlice';
-import { reloadGun } from '../../store/shootingSlice';
+import { removeBulletsValue } from '../../store/shootingSlice';
 
 export const BulletsContainer: React.FC<IBulletsContainerProps> = () => {
-  const isGunEmpty = useSelector((state: RootState) => state.shooting.isGunEmpty);
   const bulletsValue = useSelector((state: RootState) => state.shooting.bulletsValue);
+  const bulletsInGun = useSelector((state: RootState) => state.shooting.bulletsInGun);
   const dispatch = useDispatch();
 
-  const tanksBulletsArr = new Array(bulletsValue / BULLETS_IN_GUN).fill(<></>);
+  const tanksBulletsArr = bulletsValue && bulletsValue > 0 ? new Array(bulletsValue / BULLETS_IN_GUN).fill(<></>) : [];
 
   useEffect(() => {
-    if (!isGunEmpty) {
-      return;
+    if (!bulletsInGun) {
+      dispatch(removeBulletsValue());
     }
-    bulletsValue - BULLETS_IN_GUN >= 0 ? dispatch(reloadGun) : dispatch(setGameIsOver);
-  }, [isGunEmpty]);
+  }, [bulletsInGun]);
 
   const renderBulletsTank = (idxTank: number): JSX.Element => {
     const bulletsArr = new Array(BULLETS_IN_GUN).fill(<></>);
@@ -35,7 +33,7 @@ export const BulletsContainer: React.FC<IBulletsContainerProps> = () => {
 
   return (
     <div className={styles.container}>
-      {tanksBulletsArr.map((bull, idxTank): JSX.Element => renderBulletsTank(idxTank))}
+      {tanksBulletsArr.length && tanksBulletsArr.map((bull, idxTank): JSX.Element => renderBulletsTank(idxTank))}
     </div>
   );
 };
