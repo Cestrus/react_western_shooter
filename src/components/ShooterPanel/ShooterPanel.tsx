@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 import cn from 'classnames';
 
 import { IShooterPanelProps } from './ShooterPanel.prop';
@@ -28,24 +29,31 @@ export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.plank}>
-        <div className={styles.paper}>
-          <h4 className={styles.title}>WANTED</h4>
-          <div className={cn(styles.shooter, styles[`target_${target.name}`])}>
-            <div
-              className={styles.bloodZone}
-              style={{
-                width: `${target.bloodZoneWidht}rem`,
-                height: `${target.bloodZoneHeight}rem`,
-                top: `${target.bloodZoneTop}rem`,
-                left: `${target.bloodZoneLeft}rem`,
-              }}
-              onClick={shootHandler}
-            ></div>
+      <motion.div
+        className={styles.plank}
+        animate={{ rotateY: [0, 88, 0] }}
+        transition={{ duration: 1, repeat: Infinity }}
+      >
+        {true && <div className={styles.guns}></div>}
+        {false && (
+          <div className={styles.paper}>
+            <h4 className={styles.title}>WANTED</h4>
+            <div className={cn(styles.shooter, styles[`target_${target.name}`])}>
+              <div
+                className={styles.bloodZone}
+                style={{
+                  width: `${target.bloodZoneWidht}rem`,
+                  height: `${target.bloodZoneHeight}rem`,
+                  top: `${target.bloodZoneTop}rem`,
+                  left: `${target.bloodZoneLeft}rem`,
+                }}
+                onClick={shootHandler}
+              ></div>
+            </div>
+            <h5 className={styles.price}>${target?.price}</h5>
           </div>
-          <h5 className={styles.price}>${target?.price}</h5>
-        </div>
-      </div>
+        )}
+      </motion.div>
     </div>
   );
 };
