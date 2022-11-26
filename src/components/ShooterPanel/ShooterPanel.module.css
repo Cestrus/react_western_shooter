@@ -20,6 +20,7 @@
 
   background-image: url('./plank.jpg');
   background-size: cover;
+  box-shadow: 0 0 10px black;
 }
 
 .paper {
@@ -91,4 +92,14 @@
 
 .hidden {
   display: none;
+}
+
+.guns {
+  width: 80%;
+  height: 80%;
+
+  background-image: url('./guns.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
