@@ -9,7 +9,7 @@ export const ShooterPanel: React.FC<IShooterPanelProps> = () => {
     <div className={styles.container}>
       <motion.div
         className={styles.plank}
-        animate={{ rotateY: [0, 90, 0] }}
+        animate={{ rotateY: [0, 88, 0] }}
         transition={{ duration: 1, repeat: Infinity }}
       >
         {true && <div className={styles.guns}></div>}
