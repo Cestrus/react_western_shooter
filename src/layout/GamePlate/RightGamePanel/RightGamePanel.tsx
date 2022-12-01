@@ -1,5 +1,5 @@
 import React from 'react';
-import { BulletsContainer } from '../../../components';
+import { BulletsContainer, CounterMoney } from '../../../components';
 import { GunContainer } from '../../../components/';
 
 import styles from './RightGamePanel.module.css';
@@ -10,6 +10,7 @@ const RightGamePanel: React.FC<IRightGamePlateProps> = () => {
     <div className={styles.container}>
       <BulletsContainer />
       <GunContainer />
+      <CounterMoney />
     </div>
   );
 };

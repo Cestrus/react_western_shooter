@@ -10,7 +10,7 @@ export const CounterMoney: React.FC<ICountMoneyProps> = ({ className }) => {
   const moneyValue = useSelector((state: RootState) => state.money.moneyValue);
 
   return (
-    <div className={cn(styles.counter, className)}>
+    <div className={cn(styles.container, className)}>
       <h2 className={styles.text}>${moneyValue}</h2>
     </div>
   );
