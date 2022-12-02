@@ -57,9 +57,6 @@ export const shootingSlice = createSlice({
     missTarget: (state) => {
       state.shootResult = ShootingType.MISSING;
     },
-    setSilence: (state) => {
-      state.shootResult = ShootingType.SILENCE;
-    },
     setShotCoord: (state, action: PayloadAction<ShotCoordType>) => {
       state.shotCoord = {
         top: action.payload.top,

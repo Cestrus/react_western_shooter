@@ -1,23 +1,23 @@
-export enum TargetType {
+export enum WantedType {
   'bandit',
   'civilian',
 }
 
-export interface ITarget {
+export interface IWantedObj {
   name: string;
   price: number;
-  type: TargetType;
+  type: WantedType;
   bloodZoneHeight: number;
   bloodZoneWidht: number;
   bloodZoneTop: number;
   bloodZoneLeft: number;
 }
 
-export const targets: ITarget[] = [
+export const targets: IWantedObj[] = [
   {
     name: 'cowboy',
     price: 75,
-    type: TargetType.bandit,
+    type: WantedType.bandit,
     bloodZoneTop: 0.8,
     bloodZoneLeft: 2,
     bloodZoneWidht: 2.2,
@@ -26,7 +26,7 @@ export const targets: ITarget[] = [
   {
     name: 'gunpig',
     price: 100,
-    type: TargetType.bandit,
+    type: WantedType.bandit,
     bloodZoneTop: 1.2,
     bloodZoneLeft: 1.1,
     bloodZoneWidht: 2.2,
@@ -35,7 +35,7 @@ export const targets: ITarget[] = [
   {
     name: 'indian',
     price: 50,
-    type: TargetType.bandit,
+    type: WantedType.bandit,
     bloodZoneTop: 1,
     bloodZoneLeft: 1.5,
     bloodZoneWidht: 2.5,
@@ -44,7 +44,7 @@ export const targets: ITarget[] = [
   {
     name: 'pig',
     price: -75,
-    type: TargetType.civilian,
+    type: WantedType.civilian,
     bloodZoneTop: 1.2,
     bloodZoneLeft: 1.6,
     bloodZoneWidht: 2,
@@ -53,7 +53,7 @@ export const targets: ITarget[] = [
   {
     name: 'stich',
     price: -50,
-    type: TargetType.civilian,
+    type: WantedType.civilian,
     bloodZoneTop: 0.7,
     bloodZoneLeft: 1.5,
     bloodZoneWidht: 2.5,

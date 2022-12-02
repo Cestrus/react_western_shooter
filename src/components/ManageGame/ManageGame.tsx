@@ -10,17 +10,17 @@ import { Button } from '../Button/Button';
 import styles from './ManageGame.module.css';
 import { IManageGameProps } from './ManageGame.prop';
 import { RootState } from '../../store/store';
-import { setIsPaused, setPlaying } from '../../store/playerSlice';
+import { setPauseOn, setPauseOff } from '../../store/playerSlice';
 
 export const ManageGame: React.FC<IManageGameProps> = () => {
   const isPaused = useSelector((state: RootState) => state.player.isPaused);
   const dispatch = useDispatch();
 
   const pausedHandler: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(setIsPaused());
+    dispatch(setPauseOn());
   };
   const playingHandler: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(setPlaying());
+    dispatch(setPauseOff());
   };
 
   return (

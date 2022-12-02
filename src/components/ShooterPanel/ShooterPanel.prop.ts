@@ -1,6 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
-import { ITarget } from '../../utils/targets';
+import { ITargetPlate } from '../../model/gameModel';
 
 export interface IShooterPanelProps extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-  target: ITarget;
+  target: ITargetPlate | undefined;
 }

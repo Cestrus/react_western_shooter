@@ -8,7 +8,7 @@ export interface IPlayerState {
 }
 
 const initialState: IPlayerState = {
-  gameIsOver: false,
+  gameIsOver: true,
   name: '',
   isAuthorized: false,
   isPaused: true,
@@ -30,17 +30,20 @@ export const playerSlice = createSlice({
     setIsAuthorized: (state, action) => {
       state.isAuthorized = action.payload;
     },
-    setIsPaused: (state) => {
+    setPauseOn: (state) => {
       state.isPaused = true;
     },
-    setPlaying: (state) => {
+    setPauseOff: (state) => {
+      if (state.gameIsOver) {
+        state.gameIsOver = false;
+      }
       state.isPaused = false;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setGameIsOver, setNewGame, setPlayerName, setIsAuthorized, setIsPaused, setPlaying } =
+export const { setGameIsOver, setNewGame, setPlayerName, setIsAuthorized, setPauseOn, setPauseOff } =
   playerSlice.actions;
 
 export default playerSlice.reducer;

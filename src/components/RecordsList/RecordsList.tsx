@@ -8,7 +8,7 @@ const RecordsList: React.FC<IRecordsListProps> = ({ playersList }) => {
   return (
     <ul className={styles.list}>
       {playersList.map((player, idx) => (
-        <PlayerInfo player={player} key={player.id} rating={idx + 1} />
+        <PlayerInfo player={player} key={player.name + player.money + idx} rating={idx + 1} />
       ))}
     </ul>
   );
