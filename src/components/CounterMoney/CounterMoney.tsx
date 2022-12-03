@@ -7,7 +7,7 @@ import styles from './CounterMoney.module.css';
 import { ICountMoneyProps } from './CounterMoney.prop';
 
 export const CounterMoney: React.FC<ICountMoneyProps> = ({ className }) => {
-  const moneyValue = useSelector((state: RootState) => state.money.moneyValue);
+  const moneyValue = useSelector((state: RootState) => state.player.moneyValue);
 
   return (
     <div className={cn(styles.container, className)}>

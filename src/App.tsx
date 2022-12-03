@@ -37,7 +37,7 @@ function App(): JSX.Element {
   return (
     <Layout>
       <AnimatePresence>{!isAuthorized && <Modal modalType={ModalType.AUTHORIZATION} />}</AnimatePresence>
-      {isAuthorized && isGameOver && <Modal modalType={ModalType.GAMEOVER} />}
+      <AnimatePresence>{isGameOver && <Modal modalType={ModalType.GAMEOVER} />}</AnimatePresence>
       <GamePlate />
     </Layout>
   );

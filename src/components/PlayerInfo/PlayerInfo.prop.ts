@@ -1,5 +1,5 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
-import { IPlayerInfo } from '../../utils/dummy_data';
+import { IPlayerInfo } from '../../types/globalTypes';
 
 export interface IPlayerInfoProp extends DetailedHTMLProps<HTMLAttributes<HTMLLIElement>, HTMLLIElement> {
   player: IPlayerInfo;

@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import styles from './AuthorizedWindow.module.css';
 import { CornerMain } from '../CornerMain/CornerMain';
 import { Button } from '../Button/Button';
-import { setPlayerName, setIsAuthorized, setNewGame } from '../../store/playerSlice';
+import { setPlayerName, setIsAuthorized } from '../../store/playerSlice';
 
 export const AuthorizedWindow: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -27,7 +27,6 @@ export const AuthorizedWindow: React.FC = () => {
     setIsEmptyName(false);
     dispatch(setPlayerName(name));
     dispatch(setIsAuthorized(true));
-    dispatch(setNewGame());
   };
 
   return (

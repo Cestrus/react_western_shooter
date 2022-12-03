@@ -63,6 +63,13 @@ export const shootingSlice = createSlice({
         left: action.payload.left,
       };
     },
+    setFullGun: (state) => {
+      state.bulletsValue = BULLETS_VALUE - BULLETS_IN_GUN;
+      state.bulletsInGun = BULLETS_IN_GUN;
+      state.isReloading = false;
+      state.shootResult = ShootingType.SILENCE;
+      state.shotCoord = null;
+    },
   },
 });
 
@@ -75,6 +82,7 @@ export const {
   missTarget,
   setShotCoord,
   removeBulletsValue,
+  setFullGun,
 } = shootingSlice.actions;
 
 export default shootingSlice.reducer;

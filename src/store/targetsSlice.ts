@@ -19,9 +19,12 @@ export const targetsSlice = createSlice({
     setTargetPlate: (state) => {
       state.currTarget = getTarget();
     },
+    resetTargetPlate: (state) => {
+      state.currTarget = { id: -1 };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setTargetPlate } = targetsSlice.actions;
+export const { setTargetPlate, resetTargetPlate } = targetsSlice.actions;
 export default targetsSlice.reducer;

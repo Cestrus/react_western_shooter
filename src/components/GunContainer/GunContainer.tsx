@@ -13,6 +13,8 @@ export const GunContainer: React.FC<IGunContainerProps> = () => {
   const bulletsInGun = useSelector((state: RootState) => state.shooting.bulletsInGun);
   const bulletsValue = useSelector((state: RootState) => state.shooting.bulletsValue);
   const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
+  const gameIsOver = useSelector((state: RootState) => state.player.gameIsOver);
+  const isPaused = useSelector((state: RootState) => state.player.isPaused);
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
@@ -23,13 +25,13 @@ export const GunContainer: React.FC<IGunContainerProps> = () => {
         }, 300);
       }
     };
-    if (isReloading) {
+    if (isReloading && !gameIsOver && !isPaused) {
       reloadGun();
     }
     if (!bulletsValue && !bulletsInGun && !isReloading) {
-      dispatch(setGameIsOver());
+      dispatch(setGameIsOver(true));
     }
-  }, [bulletsInGun, isReloading, bulletsValue]);
+  }, [bulletsInGun, isReloading, bulletsValue, isPaused, gameIsOver]);
 
   return (
     <div className={styles.container}>

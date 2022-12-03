@@ -57,7 +57,10 @@
   width: 100px;
   height: 35px;
   margin: 30px 20px;
+
   font-size: 18px;
+
+  box-shadow: 0 0 10px black;
 }
 
 .corner {

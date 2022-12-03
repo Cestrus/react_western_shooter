@@ -8,9 +8,9 @@ import { TURN_SPEED } from '../../utils/constants';
 import { IShooterPanelProps } from './ShooterPanel.prop';
 import styles from './ShooterPanel.module.css';
 import { hitTarget, removeBulletFromGun, setShotCoord } from '../../store/shootingSlice';
-import { addMoneyValue } from '../../store/moneySlice';
 import { SHOT_WIDTH, SHOT_HEIGHT } from '../../utils/constants';
 import { RootState } from '../../store/store';
+import { addMoneyValue } from '../../store/playerSlice';
 
 export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
   const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
