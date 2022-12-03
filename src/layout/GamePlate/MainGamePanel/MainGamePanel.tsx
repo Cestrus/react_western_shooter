@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
+import useSound from 'use-sound';
 
 import { ShooterPanel } from '../../../components';
 import styles from './MainGamePanel.module.css';
@@ -18,10 +19,13 @@ const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
   const coord = useSelector((state: RootState) => state.shooting.shotCoord);
   const currTarget = useSelector((state: RootState) => state.targets.currTarget);
 
+  const [shot] = useSound('./audio/sounds/shot.wav');
+
   const dispatch = useDispatch();
 
   const shotHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
     if (!isReloading && !isPaused) {
+      shot();
       const coordX = ev.clientX - SHOT_WIDTH / 2;
       const coordY = ev.clientY - SHOT_HEIGHT / 2;
 

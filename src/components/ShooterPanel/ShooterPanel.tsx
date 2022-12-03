@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 import cn from 'classnames';
+import useSound from 'use-sound';
 
 import { TURN_SPEED } from '../../utils/constants';
 
@@ -17,10 +18,13 @@ export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
   const isPaused = useSelector((state: RootState) => state.player.isPaused);
   const dispatch = useDispatch();
 
+  const [shot] = useSound('./audio/sounds/shot.wav');
+
   const shootHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
     ev.stopPropagation();
 
     if (!isReloading && target && !isPaused) {
+      shot();
       const coordX = ev.clientX - SHOT_WIDTH / 2;
       const coordY = ev.clientY - SHOT_HEIGHT / 2;
 

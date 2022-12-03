@@ -1,6 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
+import useSound from 'use-sound';
 
 import styles from './GunContainer.module.css';
 import { RootState } from '../../store/store';
@@ -15,12 +16,15 @@ export const GunContainer: React.FC<IGunContainerProps> = () => {
   const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
   const gameIsOver = useSelector((state: RootState) => state.player.gameIsOver);
   const isPaused = useSelector((state: RootState) => state.player.isPaused);
+
+  const [reloadSound] = useSound('./audio/sounds/reload_bullet.wav');
   const dispatch = useDispatch();
 
   useLayoutEffect(() => {
     const reloadGun = (): void => {
       if (bulletsInGun < BULLETS_IN_GUN) {
         setTimeout(() => {
+          reloadSound();
           dispatch(addBulletInGun());
         }, 300);
       }
