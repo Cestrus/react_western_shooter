@@ -79,6 +79,7 @@
   width: 40px;
   height: 40px;
 
+  opacity: 0;
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -99,4 +100,8 @@
   top: 40%;
   left: 80%;
   background-image: url('../../assets/holes/bullet-hole-3.png');
+}
+
+.visible {
+  opacity: 1;
 }
