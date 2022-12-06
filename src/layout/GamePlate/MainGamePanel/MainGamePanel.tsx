@@ -1,23 +1,22 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import cn from 'classnames';
-import useSound from 'use-sound';
+import { useSound } from 'use-sound';
+import { motion } from 'framer-motion';
 
-import { ShooterPanel } from '../../../components';
 import styles from './MainGamePanel.module.css';
 import { IMainGamePlateProps } from './MainGamePanel.prop';
 import { RootState } from '../../../store/store';
 import { ShootingType, setShotCoord, missTarget, removeBulletFromGun } from '../../../store/shootingSlice';
 import { SHOT_HEIGHT, SHOT_WIDTH } from '../../../utils/constants';
 import { getRandomValue } from '../../../utils/utils';
+import { TargetsPlate } from '../../../components';
 
 const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
   const shootResult = useSelector((state: RootState) => state.shooting.shootResult);
   const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
-  const allTargets = useSelector((state: RootState) => state.targets.allTargets);
-  const isPaused = useSelector((state: RootState) => state.player.isPaused);
   const coord = useSelector((state: RootState) => state.shooting.shotCoord);
-  const currTarget = useSelector((state: RootState) => state.targets.currTarget);
+  const isPaused = useSelector((state: RootState) => state.player.isPaused);
 
   const [shot] = useSound('./audio/sounds/shot.wav');
 
@@ -35,20 +34,25 @@ const MainGamePanel: React.FC<IMainGamePlateProps> = () => {
     }
   };
 
+  const renderShot: React.FC<boolean> = (isHit: boolean) => {
+    const shotStyle = isHit ? styles.hit : styles[`miss_${getRandomValue(4, 1)}`];
+
+    return (
+      <motion.div
+        className={cn(styles.shot, shotStyle)}
+        style={{ top: coord?.top, left: coord?.left }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      ></motion.div>
+    );
+  };
+
   return (
     <div className={styles.container} onClick={shotHandler}>
-      {allTargets.map((plate) => (
-        <ShooterPanel target={plate.id === currTarget.id ? currTarget : undefined} key={plate.id} />
-      ))}
-      {shootResult === ShootingType.HIT && (
-        <div className={cn(styles.shot, styles.hit)} style={{ top: coord?.top, left: coord?.left }}></div>
-      )}
-      {shootResult === ShootingType.MISSING && (
-        <div
-          className={cn(styles.shot, styles[`miss_${getRandomValue(4, 1)}`])}
-          style={{ top: coord?.top, left: coord?.left }}
-        ></div>
-      )}
+      {shootResult === ShootingType.HIT && renderShot(true)}
+      {shootResult === ShootingType.MISSING && renderShot(false)}
+      <TargetsPlate />
     </div>
   );
 };
