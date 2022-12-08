@@ -8,3 +8,4 @@ export * from './Button/Button';
 export * from './InfoPanel/InfoPanel';
 export * from './ShooterPanel/ShooterPanel';
 export * from './TargetsPlate/TargetsPlate';
+export * from './ShotHole/ShotHole';
