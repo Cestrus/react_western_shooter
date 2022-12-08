@@ -13,20 +13,26 @@ export type ShotCoordType = {
   left: number;
 };
 
+export type ShotType = {
+  id: number;
+  shotCoord: ShotCoordType | null;
+  shotResult: ShootingType;
+  holeType: number;
+  visibility: boolean;
+};
+
 export interface IShootingState {
   bulletsValue: number;
   bulletsInGun: number;
   isReloading: boolean;
-  shootResult: ShootingType;
-  shotCoord: ShotCoordType | null;
+  shotList: ShotType[];
 }
 
 const initialState: IShootingState = {
   bulletsValue: BULLETS_VALUE - BULLETS_IN_GUN,
   bulletsInGun: BULLETS_IN_GUN,
   isReloading: false,
-  shootResult: ShootingType.SILENCE,
-  shotCoord: null,
+  shotList: [],
 };
 
 export const shootingSlice = createSlice({
@@ -51,38 +57,29 @@ export const shootingSlice = createSlice({
         state.isReloading = true;
       }
     },
-    hitTarget: (state) => {
-      state.shootResult = ShootingType.HIT;
-    },
-    missTarget: (state) => {
-      state.shootResult = ShootingType.MISSING;
-    },
-    setShotCoord: (state, action: PayloadAction<ShotCoordType>) => {
-      state.shotCoord = {
-        top: action.payload.top,
-        left: action.payload.left,
-      };
-    },
     setFullGun: (state) => {
       state.bulletsValue = BULLETS_VALUE - BULLETS_IN_GUN;
       state.bulletsInGun = BULLETS_IN_GUN;
       state.isReloading = false;
-      state.shootResult = ShootingType.SILENCE;
-      state.shotCoord = null;
+      state.shotList = [];
+    },
+    addShotToList: (state, action: PayloadAction<ShotType>) => {
+      state.shotList.push(action.payload);
+    },
+    removeShotFromList: (state, action: PayloadAction<number>) => {
+      state.shotList = state.shotList.filter((shot) => shot.id !== action.payload);
     },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
-  // setIsGunEmpty,
   addBulletInGun,
   removeBulletFromGun,
-  hitTarget,
-  missTarget,
-  setShotCoord,
   removeBulletsValue,
   setFullGun,
+  addShotToList,
+  removeShotFromList,
 } = shootingSlice.actions;
 
 export default shootingSlice.reducer;

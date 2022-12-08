@@ -8,30 +8,39 @@ import { TURN_SPEED } from '../../utils/constants';
 
 import { IShooterPanelProps } from './ShooterPanel.prop';
 import styles from './ShooterPanel.module.css';
-import { hitTarget, removeBulletFromGun, setShotCoord } from '../../store/shootingSlice';
+import { removeBulletFromGun, addShotToList, ShootingType, removeShotFromList } from '../../store/shootingSlice';
 import { SHOT_WIDTH, SHOT_HEIGHT } from '../../utils/constants';
 import { RootState } from '../../store/store';
 import { addMoneyValue } from '../../store/playerSlice';
+import { getRandomValue } from '../../utils/utils';
 
 export const ShooterPanel: React.FC<IShooterPanelProps> = ({ target }) => {
   const isReloading = useSelector((state: RootState) => state.shooting.isReloading);
   const isPaused = useSelector((state: RootState) => state.player.isPaused);
   const dispatch = useDispatch();
 
-  const [shot] = useSound('./audio/sounds/shot.wav');
+  const [shotSound] = useSound('./audio/sounds/shot.wav');
 
   const shootHandler: React.MouseEventHandler<HTMLDivElement> = (ev) => {
     ev.stopPropagation();
 
     if (!isReloading && target && !isPaused) {
-      shot();
+      shotSound();
       const coordX = ev.clientX - SHOT_WIDTH / 2;
       const coordY = ev.clientY - SHOT_HEIGHT / 2;
-
-      dispatch(setShotCoord({ top: coordY, left: coordX }));
-      dispatch(hitTarget());
+      const shot = {
+        id: Math.random(),
+        shotCoord: { top: coordY, left: coordX },
+        shotResult: ShootingType.HIT,
+        holeType: getRandomValue(4, 1),
+        visibility: true,
+      };
+      dispatch(addShotToList(shot));
       dispatch(removeBulletFromGun());
       dispatch(addMoneyValue(target.wanted!.price));
+      setTimeout(() => {
+        dispatch(removeShotFromList(shot.id));
+      }, 800);
     }
   };
 
